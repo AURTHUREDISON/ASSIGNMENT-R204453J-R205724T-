@@ -9,7 +9,7 @@ import numpy as np
 import streamlit as st
 import pickle
 
-app = streamlit(__name__)
+app = st(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route("/")
