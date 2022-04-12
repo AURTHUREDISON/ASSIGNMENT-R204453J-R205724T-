@@ -8,8 +8,6 @@ Created on Mon Apr  4 15:41:32 2022
 import numpy as np
 import streamlit as st
 import pickle
-
-app = st(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route("/")
