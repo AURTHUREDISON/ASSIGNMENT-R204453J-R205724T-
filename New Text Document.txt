@@ -1,0 +1,113 @@
+write code to save a video to a directory using streamlit
+
+
+
+import streamlit as st
+
+import os
+
+import time
+
+from PIL import Image
+
+import numpy as np
+
+import cv2
+
+import PIL.Image
+
+st.set_option('deprecation.showfileUploaderEncoding', False)
+
+def main():
+
+st.title("Streamlit Video App")
+
+st.markdown("""
+
+Upload a video file to save.
+
+""")
+
+uploaded_file = st.file_uploader("Choose a video file...", type="mp4")
+
+if uploaded_file is not None:
+
+st.markdown("""
+
+Saving video...
+
+""")
+
+# Create a temporary file in the current working directory.
+
+filename = os.path.join(os.getcwd(), "temp.mp4")
+
+# Save the uploaded file to the temporary file created above.
+
+with open(filename, "wb") as f:
+
+f.write(uploaded_file.read())
+
+# Wait a few seconds to give the user time to see the saved message.
+
+time.sleep(5)
+
+st.markdown("""
+
+Video saved!
+
+""")
+
+# Open the video file saved above.
+
+video = cv2.VideoCapture(filename)
+
+# Create an output directory.
+
+output_dir = os.path.join(os.getcwd(), "output")
+
+# If the output directory does not exist, create it.
+
+if not os.path.exists(output_dir):
+
+os.makedirs(output_dir)
+
+# Get the number of frames in the video.
+
+num_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+
+# Save each frame of the video to the output directory.
+
+for i in range(num_frames):
+
+# Read the next frame from the video.
+
+success, frame = video.read()
+
+# Convert the frame to RGB format.
+
+frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+# Save the frame to an image file.
+
+image_file = os.path.join(output_dir, "frame{:04d}.png".format(i))
+
+PIL.Image.fromarray(frame).save(image_file)
+
+# Close the video file.
+
+video.release()
+
+# Remove the temporary video file.
+
+os.remove(filename)
+
+st.markdown("""
+
+Frames saved to output directory.
+
+""")
+
+if __name__ == "__main__":
+
+main()
