@@ -6,7 +6,7 @@ Created on Mon Apr  4 15:41:32 2022
 """
 
 import numpy as np
-from flask import Flask, request,jsonify
+from flask import Flask, request
 import pickle
 
 app = Flask(__name__)
