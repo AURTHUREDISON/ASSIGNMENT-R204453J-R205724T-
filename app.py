@@ -8,7 +8,7 @@ Created on Mon Apr  4 15:41:32 2022
 import numpy as np
 import streamlit as st
 import pickle
-model = pickle.load(open('object_detection.pkl'), 'rb')
+model = pickle.load(open('object_detection.pkl'))
 
 @app.route("/")
 def home():
