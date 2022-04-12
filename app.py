@@ -8,7 +8,7 @@ Created on Mon Apr  4 15:41:32 2022
 import numpy as np
 import pickle
 
-app = Flask(__name__)
+app = streamlit(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route("/")
