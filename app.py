@@ -6,6 +6,7 @@ Created on Mon Apr  4 15:41:32 2022
 """
 
 import numpy as np
+streamlit run myapp.py
 import pickle
 
 app = streamlit(__name__)
